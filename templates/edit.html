@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit{% endblock %}
+
+{% block content %}
+<form method="post">
+        <p>
+            <label for="firstname">First Name</label>
+            <input type="text" name="firstname"
+                   value={{ author.firstname }}
+                   placeholder="First name">
+            </input>
+        </p>
+
+        <p>
+            <label for="lastname">Last Name</label>
+            <input type="text" name="lastname"
+                   value={{ author.lastname }}
+                   placeholder="Last name">
+            </input>
+        </p>
+
+        <p>
+            <label for="email">Email</label>
+            <input type="email" name="email"
+                   value={{ author.email }}
+                   placeholder="Author email">
+            </input>
+        </p>
+        <p>
+            <button type="submit">Save</button>
+        </p>
+        </form>
+{% endblock %}

@@ -12,6 +12,7 @@
                 </b>
                 <p>{{ author.email }}</p>
                 <p>Joined: {{ author.created_at }}</p>
+                <a href="{{url_for('edit', author_id=author.id)}}">Edit</a>
             </div>
         {% endfor %}
     </div>

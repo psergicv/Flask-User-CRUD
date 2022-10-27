@@ -46,5 +46,23 @@ def create():
     return render_template("create.html")
 
 
+@app.route('/<int:author_id>/edit', methods=['GET', "POST"])
+def edit(author_id):
+    author = Author.query.get_or_404(author_id)
+    if request.method == 'POST':
+        firstname = request.form['firstname']
+        lastname = request.form['lastname']
+        email = request.form['email']
+
+        author.firstname = firstname
+        author.lastname = lastname
+        author.email = email
+
+        db.session.add(author)
+        db.session.commit()
+
+        return redirect(url_for('index'))
+    return render_template('edit.html', author=author)
+
 if __name__ == '__main__':
     app.run(debug=True)
