@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
 import os
@@ -38,7 +38,11 @@ def create():
     if request.method == "POST":
         firstname = request.form['firstname']
         lastname = request.form['lastname']
-
+        email = request.form['email']
+        author = Author(firstname=firstname, lastname=lastname, email=email)
+        db.session.add(author)
+        db.session.commit()
+        return redirect(url_for('index'))
     return render_template("create.html")
 
 
