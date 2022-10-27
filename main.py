@@ -21,12 +21,26 @@ class Author(db.Model):
         return f'<Author: {self.firstname}>'
 
 
-class Post(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(90), nullable=False)
-    intro = db.Column(db.String(180), nullable=False)
-    text = db.Column(db.String(800), nullable=False)
-    created_date = db.Column(db.DateTime(timezone=True), server_default=func.now())
+@app.route('/')
+def index():
+    authors = Author.query.all()
+    return render_template("index.html", authors=authors)
 
-    def __repr__(self):
-        return f'<Title: {self.title}>'
+
+@app.route('/<int:author_id>')
+def author(author_id):
+    author = Author.query.get_or_404(author_id)
+    return render_template('author.html', author=author)
+
+
+@app.route('/create/', methods=['GET', 'POST'])
+def create():
+    if request.method == "POST":
+        firstname = request.form['firstname']
+        lastname = request.form['lastname']
+
+    return render_template("create.html")
+
+
+if __name__ == '__main__':
+    app.run(debug=True)

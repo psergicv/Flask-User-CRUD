@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} Home Page {% endblock %}
+
+{% block content %}
+<div class="content">
+        {% for author in authors %}
+            <div class="author">
+                <p><b>#{{ author.id }}</b></p>
+                <b>
+                    <p class="name">{{ author.firstname }} {{ author.lastname }}</p>
+                </b>
+                <p>{{ author.email }}</p>
+                <p>Joined: {{ author.created_at }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 style="width: 100%">{% block title %} Add a New Author {% endblock %}</h1>
+    <form method="post">
+        <p>
+            <label for="firstname">First Name</label>
+            <input type="text" name="firstname"
+                   placeholder="First name">
+            </input>
+        </p>
+
+        <p>
+            <label for="lastname">Last Name</label>
+            <input type="text" name="lastname"
+                   placeholder="Last name">
+            </input>
+        </p>
+
+        <p>
+            <label for="email">Email</label>
+            <input type="email" name="email"
+                   placeholder="Author email">
+            </input>
+        </p>
+
+        <p>
+            <button type="submit">Submit</button>
+        </p>
+    </form>
+{% endblock %}
