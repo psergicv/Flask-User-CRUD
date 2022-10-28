@@ -64,5 +64,14 @@ def edit(author_id):
         return redirect(url_for('index'))
     return render_template('edit.html', author=author)
 
+
+@app.route('/<int:author_id>/delete', methods=['GET', 'POST'])
+def delete(author_id):
+    author = Author.query.get_or_404(author_id)
+    db.session.delete(author)
+    db.session.commit()
+    return redirect(url_for('index'))
+
+
 if __name__ == '__main__':
     app.run(debug=True)
